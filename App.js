@@ -1,20 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Text, View, Image } from 'react-native';
+import userData from "./data.json"
+import styles from "./App.style"
 
 export default function App() {
+  // console.log(userData.users);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <ScrollView>
+      {userData.users.map((user) => {
+        return (
+          <View style={styles.container} key={user.name}>
+            <View style={styles.card}>
+              <Image
+                source={{
+                  uri: user.photo_url,
+                }}
+                style={styles.avatar} />
+              <View style={styles.boldText}>
+                <Text style={styles.boldText}>{user.name}</Text>
+                <Text>{user.email}</Text>
+              </View>
+            </View>
+          </View>
+        )
+      })}
+    </ScrollView>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
