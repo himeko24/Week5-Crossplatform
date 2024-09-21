@@ -1,4 +1,4 @@
-import { PaperProvider, Card, Title, Paragraph, Avatar } from 'react-native-paper';
+import { PaperProvider, Card, Title, Paragraph, Avatar, IconButton } from 'react-native-paper';
 import { ScrollView, Text, View, Image } from 'react-native';
 import userData from "./data.json"
 import styles from "./App.style"
@@ -36,12 +36,11 @@ const App = () => {
           {userData.users.map((user) => {
             return (
               <Card style={{ marginVertical: 8 }} key={user.name}>
-                <Card.Title title={user.name} />
-                <Card.Content>
-                  <Avatar.Image size={48} source={{ uri: user.photo_url }} />
-                  <Title>{user.name}</Title>
-                  <Paragraph>{user.email}</Paragraph>
-                </Card.Content>
+                <Card.Title
+                  title={user.name}
+                  subtitle={user.email}
+                  left={(props) => <Avatar.Image size={42} source={{ uri: user.photo_url }} />}
+                />
               </Card>
               // <View style={styles.container} key={user.name}>
               //   <View style={styles.card}>
